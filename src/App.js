@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Sidebar from './components/shared/Sidebar'
+import AddEquation from './pages/Root-of-equation/AddEquation'
+import Bisection from './pages/Root-of-equation/Bisection'
+import FalsePosition from './pages/Root-of-equation/FalsePosition'
+import OnePoint from './pages/Root-of-equation/OnePoint'
+import Newton from './pages/Root-of-equation/Newton'
+import Secant from './pages/Root-of-equation/Secant'
+import CraMerRule from './pages/Linear-System/CraMerRule'
+import GaussElimination from './pages/Linear-System/GaussElimination'
+import GaussJordan from './pages/Linear-System/GaussJordan'
+
+import './App.css'
+import Jacobi from './pages/Linear-System/Jacobi'
+
+const App = () => {
+	return (
+		<Router>
+			<Sidebar />
+			<Switch>
+				<Route path='/root/equation' exact component={AddEquation} />
+				<Route path='/root/bisection' exact component={Bisection} />
+				<Route path='/root/false' exact component={FalsePosition} />
+				<Route path='/root/one' exact component={OnePoint} />
+				<Route path='/root/new' exact component={Newton} />
+				<Route path='/root/secant' exact component={Secant} />
+				<Route path='/linear/craMer' exact component={CraMerRule} />
+				<Route path='/linear/elimination' exact component={GaussElimination} />
+				<Route path='/linear/jordan' exact component={GaussJordan} />
+				<Route path='/linear/jacobi' exact component={Jacobi} />
+			</Switch>
+		</Router>
+	)
 }
 
-export default App;
+export default App
