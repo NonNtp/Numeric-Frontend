@@ -67,6 +67,11 @@ const SidebarData = [
 				path: '/linear/jacobi',
 				icon: <IoIosPaper />,
 			},
+			{
+				title: 'Gauss-Seidel.js',
+				path: '/linear/seidel',
+				icon: <IoIosPaper />,
+			},
 		],
 	},
 ]

@@ -12,8 +12,8 @@ import CraMerRule from './pages/Linear-System/CraMerRule'
 import GaussElimination from './pages/Linear-System/GaussElimination'
 import GaussJordan from './pages/Linear-System/GaussJordan'
 
-import './App.css'
 import Jacobi from './pages/Linear-System/Jacobi'
+import GaussSeidel from './pages/Linear-System/GaussSeidel'
 
 const App = () => {
 	return (
@@ -30,6 +30,7 @@ const App = () => {
 				<Route path='/linear/elimination' exact component={GaussElimination} />
 				<Route path='/linear/jordan' exact component={GaussJordan} />
 				<Route path='/linear/jacobi' exact component={Jacobi} />
+				<Route path='/linear/seidel' exact component={GaussSeidel} />
 			</Switch>
 		</Router>
 	)

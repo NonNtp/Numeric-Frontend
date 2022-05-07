@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 
-import JacobiMethod from '../../modules/Linear/Jacobi'
+import GaussSeidelMethod from '../../modules/Linear/GaussSeidel'
 import './matrix.css'
 
-const Jacobi = () => {
+const GaussSeidel = () => {
 	const [result, setResult] = useState('')
 	const [showGraph, setShowGraph] = useState(false)
 
@@ -43,7 +43,7 @@ const Jacobi = () => {
 
 		console.log(
 			setResult(
-				JacobiMethod(
+				GaussSeidelMethod(
 					enteredB1,
 					enteredA12,
 					enteredA11,
@@ -119,4 +119,4 @@ const Jacobi = () => {
 	)
 }
 
-export default Jacobi
+export default GaussSeidel

@@ -53,10 +53,6 @@ export const BisectionMethod = (x, a, b) => {
 		tableObject.errorTable = error
 		resultTable.push(tableObject)
 
-		console.log('Iteration :', iteration)
-		console.log('Xl : ', a, ' Xr : ', b)
-		console.log('Error :', error)
-
 		iteration++
 	}
 
