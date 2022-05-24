@@ -16,7 +16,11 @@ const Secant = () => {
 	const xrInputRef = useRef()
 
 	const sendRequest = async () => {
-		const response = await fetch('http://localhost:5000/api/get-bisection')
+		const response = await fetch('http://localhost:5000/api/get-bisection', {
+			headers: {
+				authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
+			},
+		})
 		const responseData = await response.json()
 		setIsLoaded(responseData)
 	}

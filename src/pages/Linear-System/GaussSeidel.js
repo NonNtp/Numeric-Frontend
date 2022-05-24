@@ -1,20 +1,45 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
 
 import GaussSeidelMethod from '../../modules/Linear/GaussSeidel'
 import './matrix.css'
 
 const GaussSeidel = () => {
+	const [value, setValue] = useState([])
 	const [result, setResult] = useState('')
 	const [showGraph, setShowGraph] = useState(false)
 
+	const config = {
+		headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
+	}
+
+	const fetchData = async () => {
+		const response = await axios.get(
+			'http://localhost:5000/api/get-elimination',
+			config
+		)
+		setValue(response.data)
+	}
+
+	useEffect(() => {
+		fetchData()
+		// eslint-disable-next-line
+	}, [])
+
 	const a11InputRef = useRef()
 	const a12InputRef = useRef()
+	const a13InputRef = useRef()
+	const a14InputRef = useRef()
 	const a21InputRef = useRef()
 	const a22InputRef = useRef()
 	const a23InputRef = useRef()
+	const a24InputRef = useRef()
+	const a31InputRef = useRef()
 	const a32InputRef = useRef()
 	const a33InputRef = useRef()
 	const a34InputRef = useRef()
+	const a41InputRef = useRef()
+	const a42InputRef = useRef()
 	const a43InputRef = useRef()
 	const a44InputRef = useRef()
 
@@ -70,26 +95,221 @@ const GaussSeidel = () => {
 			<form onSubmit={submitHandler}>
 				<div className='flex-app'>
 					<div className='app'>
+						<h1>Gauss Seidel</h1>
 						<div className='A-value'>
-							<input type='text' className='itemA' ref={a11InputRef} />
-							<input type='text' className='itemA' ref={a12InputRef} />
-							<input type='text' className='itemA' value={0} readOnly />
-							<input type='text' className='itemA' value={0} readOnly />
-							<br />
-							<input type='text' className='itemA' ref={a21InputRef} />
-							<input type='text' className='itemA' ref={a22InputRef} />
-							<input type='text' className='itemA' ref={a23InputRef} />
-							<input type='text' className='itemA' value={0} readOnly />
-							<br />
-							<input type='text' className='itemA' value={0} readOnly />
-							<input type='text' className='itemA' ref={a32InputRef} />
-							<input type='text' className='itemA' ref={a33InputRef} />
-							<input type='text' className='itemA' ref={a34InputRef} />
-							<br />
-							<input type='text' className='itemA' value={0} readOnly />
-							<input type='text' className='itemA' value={0} readOnly />
-							<input type='text' className='itemA' ref={a43InputRef} />
-							<input type='text' className='itemA' ref={a44InputRef} />
+							<div className='control-group2'>
+								<div className='form-control2'>
+									<select ref={a11InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a11}
+													label={equ.a11}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a12InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a12}
+													label={equ.a12}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a13InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a13}
+													label={equ.a13}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a14InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a14}
+													label={equ.a14}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<br />
+								<div className='form-control2'>
+									<select ref={a21InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a21}
+													label={equ.a21}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a22InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a22}
+													label={equ.a22}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a23InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a23}
+													label={equ.a23}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a24InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a24}
+													label={equ.a24}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<br />
+								<div className='form-control2'>
+									<select ref={a31InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a31}
+													label={equ.a31}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a32InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a32}
+													label={equ.a32}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a33InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a33}
+													label={equ.a33}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a34InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a34}
+													label={equ.a34}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<br />
+								<div className='form-control2'>
+									<select ref={a41InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a41}
+													label={equ.a41}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a42InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a42}
+													label={equ.a42}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a43InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a43}
+													label={equ.a43}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+								<div className='form-control2'>
+									<select ref={a44InputRef}>
+										{value.map((equ, index) => {
+											return (
+												<option
+													key={index}
+													value={equ.a44}
+													label={equ.a44}
+												></option>
+											)
+										})}
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className='app'>
@@ -102,10 +322,58 @@ const GaussSeidel = () => {
 					</div>
 					<div className='app'>
 						<div className='B-value'>
-							<input type='text' className='itemB' ref={b1InputRef} />
-							<input type='text' className='itemB' ref={b2InputRef} />
-							<input type='text' className='itemB' ref={b3InputRef} />
-							<input type='text' className='itemB' ref={b4InputRef} />
+							<div className='form-control2'>
+								<select ref={b1InputRef}>
+									{value.map((equ, index) => {
+										return (
+											<option
+												key={index}
+												value={equ.b1}
+												label={equ.b1}
+											></option>
+										)
+									})}
+								</select>
+							</div>
+							<div className='form-control2'>
+								<select ref={b2InputRef}>
+									{value.map((equ, index) => {
+										return (
+											<option
+												key={index}
+												value={equ.b2}
+												label={equ.b2}
+											></option>
+										)
+									})}
+								</select>
+							</div>
+							<div className='form-control2'>
+								<select ref={b3InputRef}>
+									{value.map((equ, index) => {
+										return (
+											<option
+												key={index}
+												value={equ.b3}
+												label={equ.b3}
+											></option>
+										)
+									})}
+								</select>
+							</div>
+							<div className='form-control2'>
+								<select ref={b4InputRef}>
+									{value.map((equ, index) => {
+										return (
+											<option
+												key={index}
+												value={equ.b4}
+												label={equ.b4}
+											></option>
+										)
+									})}
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
