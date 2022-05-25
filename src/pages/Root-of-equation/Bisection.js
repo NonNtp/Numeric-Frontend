@@ -44,7 +44,7 @@ const Bisection = () => {
 		<div>
 			<div className='flex-app'>
 				<div className='app'>
-					<h1 className='bisection'>Bisection</h1>
+					<h1 className='bisection'>Bisection2</h1>
 					<form onSubmit={submitHandler}>
 						<div className='control-group'>
 							<div className='form-control'>
